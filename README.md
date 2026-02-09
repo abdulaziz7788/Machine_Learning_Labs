@@ -22,6 +22,3 @@ Description: The dataset contains a collection of raw messages tagged according 
 
 3. Methodology Diagram
 
-The following diagram illustrates the end-to-end workflow adopted for this project:
-
-Note: The workflow includes Data Collection, Text Preprocessing (Tokenization & Vectorization), Train/Test Splitting, Model Selection (Naïve Bayes, Random Forest), and Evaluation via Accuracy and Precision.
