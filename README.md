@@ -3,5 +3,5 @@
 
 * [Lab 2: Identifying ML Problems, Selecting Open 
 Datasets, and Drawing a Methodology Diagram)]
-(https://github.com/YourUsername/YourRepo/tree/lab-2-stacks)
+(https://github.com/abdulaziz7788/Machine_Learning_Labs/blob/main/README.md)
 
