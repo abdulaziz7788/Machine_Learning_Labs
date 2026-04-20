@@ -1,59 +1,27 @@
-# 📧 Email Spam Detection: Data Preprocessing (Lab 4)
+Lab 6: E-Commerce Product Pricing Analysis
+💡 The Core Idea
+The objective of this lab is to apply Regression Analysis to understand the dynamics of a competitive marketplace. Using the Olist e-commerce dataset, we focus on identifying the relationship between product attributes, pricing, and freight costs to predict the final price of an item.
 
-This repository contains the implementation of **Data Quality Assessment and Preprocessing** techniques applied to the `emails.csv` dataset, as required for the **ARTI308 - Machine Learning** course.
+The goal is to move beyond simple data exploration and build a model that can accurately estimate price points based on historical transaction features.
 
----
+🧠 Key Machine Learning Concepts
+Multivariate Regression: Analyzing how multiple independent variables (like freight value, product weight, and dimensions) collectively influence the target price.
 
-## 🛠 Project Overview
-The goal of this project is to transform raw, high-dimensional text data into a clean, normalized format suitable for machine learning training. The workflow follows the five core tasks outlined in Lab 4.
+Feature Engineering: Processing raw product dimensions (
+length×height×width
+) and weight to extract meaningful predictors for logistics-heavy pricing.
 
-## 📋 Assignment Tasks
+Correlation Mapping: Identifying the strength of the relationship between logistics costs (freight) and the actual product value to determine price elasticity.
 
-### **Task 1: Data Quality Assessment**
-We performed an audit to identify inconsistencies in the raw data.
-* **Feature Engineering:** Since raw text is non-numeric, we extracted `text_length` and `word_count` to allow for mathematical assessment.
-* **Audit Results:** Checked for data types and missing values. The dataset was found to be structurally complete but required scaling due to the high variance in email lengths.
+Model Evaluation: Using metrics like Mean Absolute Error (MAE) and R-squared (
+R 
+2
+ 
+) to quantify the accuracy of the price predictions.
 
-### **Task 2: Missing Value Strategy**
-To ensure the dataset is robust against potential data loss, we implemented a handling strategy:
-* **Applied Strategy:** **Mean Imputation**.
-* **Rationale:** For numerical features like email length, replacing nulls with the average (mean) maintains the statistical integrity of the dataset without reducing the sample size.
+🛠️ Technical Implementation
+Data Integration: Merging product-level details with item-level transaction data to create a comprehensive training set.
 
+Handling Sparsity: Cleaning and managing missing values within product categories and measurements to ensure model stability.
 
-### **Task 3: Outlier Detection & Handling (IQR)**
-Extreme values can negatively impact model performance. We used the **Interquartile Range (IQR)** method to filter noise.
-* **Calculation:** Bounds were set at $[Q1 - 1.5 \times IQR, Q3 + 1.5 \times IQR]$.
-* **Action:** Removed outliers that fell outside these bounds to ensure the model focuses on representative email patterns.
-
-
-[Image of box plot showing interquartile range and outliers]
-
-
-### **Task 4: Feature Normalization**
-Because `text_length` and `word_count` exist on different scales, we applied two normalization techniques:
-1.  **Min-Max Scaling:** Rescales features to a range of $[0, 1]$.
-2.  **Z-score Normalization (Standardization):** Centers data around a mean of $0$ with a standard deviation of $1$.
-* **Importance:** This prevents features with larger numerical ranges from dominating the learning process.
-
-### **Task 5: PCA & Explained Variance**
-We applied **Principal Component Analysis (PCA)** to reduce the complexity of the dataset.
-* **Analysis:** Our first Principal Component (**PC1**) captured approximately **92%** of the total variance.
-* **Conclusion:** This high variance ratio confirms that we can simplify our data into a lower-dimensional space while retaining nearly all critical information.
-
-
----
-
-## 💻 Tech Stack
-* **Language:** Python 3.10+
-* **Data Analysis:** Pandas, NumPy
-* **Machine Learning:** Scikit-learn (Preprocessing, PCA)
-* **Visualization:** Matplotlib, Seaborn
-
----
-
-* [Lab 3: EDA]
-(https://github.com/abdulaziz7788/Machine_Learning_Labs/blob/Lab-3/README.md)
-
-
-
-
+Dimensionality Impact: Assessing how physical product attributes significantly weight into the final cost structure in a real-world e-commerce environment.
