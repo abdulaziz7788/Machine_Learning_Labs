@@ -1,53 +1,133 @@
-# 📧 Email Spam Detection: Data Preprocessing (Lab 4)
+# Support Vector Machine (SVM) Assignment
 
-This repository contains the implementation of **Data Quality Assessment and Preprocessing** techniques applied to the `emails.csv` dataset, as required for the **ARTI308 - Machine Learning** course.
+## Overview
 
----
+This lab focuses on implementing a Support Vector Machine (SVM) model using Python and Scikit-learn. The Iris dataset is used to train and evaluate the classifier.
 
-## 🛠 Project Overview
-The goal of this project is to transform raw, high-dimensional text data into a clean, normalized format suitable for machine learning training. The workflow follows the five core tasks outlined in Lab 4.
+The assignment demonstrates:
 
-## 📋 Assignment Tasks
-
-### **Task 1: Data Quality Assessment**
-We performed an audit to identify inconsistencies in the raw data.
-* **Feature Engineering:** Since raw text is non-numeric, we extracted `text_length` and `word_count` to allow for mathematical assessment.
-* **Audit Results:** Checked for data types and missing values. The dataset was found to be structurally complete but required scaling due to the high variance in email lengths.
-
-### **Task 2: Missing Value Strategy**
-To ensure the dataset is robust against potential data loss, we implemented a handling strategy:
-* **Applied Strategy:** **Mean Imputation**.
-* **Rationale:** For numerical features like email length, replacing nulls with the average (mean) maintains the statistical integrity of the dataset without reducing the sample size.
-
-
-### **Task 3: Outlier Detection & Handling (IQR)**
-Extreme values can negatively impact model performance. We used the **Interquartile Range (IQR)** method to filter noise.
-* **Calculation:** Bounds were set at $[Q1 - 1.5 \times IQR, Q3 + 1.5 \times IQR]$.
-* **Action:** Removed outliers that fell outside these bounds to ensure the model focuses on representative email patterns.
-
-
-[Image of box plot showing interquartile range and outliers]
-
-
-### **Task 4: Feature Normalization**
-Because `text_length` and `word_count` exist on different scales, we applied two normalization techniques:
-1.  **Min-Max Scaling:** Rescales features to a range of $[0, 1]$.
-2.  **Z-score Normalization (Standardization):** Centers data around a mean of $0$ with a standard deviation of $1$.
-* **Importance:** This prevents features with larger numerical ranges from dominating the learning process.
-
-### **Task 5: PCA & Explained Variance**
-We applied **Principal Component Analysis (PCA)** to reduce the complexity of the dataset.
-* **Analysis:** Our first Principal Component (**PC1**) captured approximately **92%** of the total variance.
-* **Conclusion:** This high variance ratio confirms that we can simplify our data into a lower-dimensional space while retaining nearly all critical information.
-
+* Data visualization
+* Data preprocessing
+* Training an SVM classifier
+* Model evaluation
+* Hyperparameter tuning using GridSearchCV
 
 ---
 
-## 💻 Tech Stack
-* **Language:** Python 3.10+
-* **Data Analysis:** Pandas, NumPy
-* **Machine Learning:** Scikit-learn (Preprocessing, PCA)
-* **Visualization:** Matplotlib, Seaborn
+## Dataset
+
+The lab uses the famous Iris dataset provided by Scikit-learn.
+
+Features included:
+
+* Sepal Length
+* Sepal Width
+* Petal Length
+* Petal Width
+
+Target classes:
+
+* Setosa
+* Versicolor
+* Virginica
 
 ---
 
+## Libraries Used
+
+```python
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+```
+
+---
+
+## Steps Performed
+
+### 1. Import Libraries and Dataset
+
+The dataset is loaded into a Pandas DataFrame for analysis and visualization.
+
+---
+
+### 2. Data Visualization
+
+Several visualizations are created using Seaborn:
+
+* Pairplot of all features
+* KDE plot for Setosa species
+
+These plots help understand the relationships between features.
+
+---
+
+### 3. Train-Test Split
+
+The dataset is divided into:
+
+* Training set (70%)
+* Testing set (30%)
+
+using `train_test_split()`.
+
+---
+
+### 4. Training the SVM Model
+
+An SVM classifier is created using:
+
+```python
+SVC()
+```
+
+The model is trained using the training dataset.
+
+---
+
+### 5. Predictions and Evaluation
+
+Predictions are made on the test dataset.
+
+The following evaluation metrics are used:
+
+* Confusion Matrix
+* Classification Report
+
+These metrics measure the model’s performance.
+
+---
+
+### 6. Hyperparameter Tuning
+
+`GridSearchCV` is used to find the best parameters for:
+
+* `C`
+* `gamma`
+* `kernel`
+
+This improves model accuracy and performance.
+
+---
+
+## Results
+
+The optimized SVM model achieved high classification accuracy on the Iris dataset after tuning the hyperparameters.
+
+---
+
+## Technologies Used
+
+* Python
+* Jupyter Notebook
+* Scikit-learn
+* Seaborn
+* Matplotlib
+
+---
+
+## Conclusion
+
+This assignment demonstrates how Support Vector Machines can be applied to classification problems. It also highlights the importance of visualization, model evaluation, and hyperparameter tuning in machine learning workflows.
