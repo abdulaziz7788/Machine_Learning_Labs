@@ -1,133 +1,55 @@
-# Support Vector Machine (SVM) Assignment
+# Lab11_Assignment - Credit Card Customer Segmentation
 
-## Overview
+This folder contains the solved assignment notebook for the credit card customer segmentation task using K-Means clustering.
 
-This lab focuses on implementing a Support Vector Machine (SVM) model using Python and Scikit-learn. The Iris dataset is used to train and evaluate the classifier.
+## Files
 
-The assignment demonstrates:
+- `02-Credit Card Customer Segmentation Assignment_SOLVED.ipynb` - completed assignment notebook.
+- `CC_GENERAL.csv` - dataset used by the notebook.
+- `credit_card_segmentation_solution.py` - Python script version of the notebook solution.
+- `cluster_summary.csv` - mean feature values for each final cluster.
+- `cluster_counts.csv` - number of customers in each cluster.
+- `elbow_inertia_values.csv` - inertia values for K = 1 to 10.
+- `silhouette_scores.csv` - silhouette scores for K = 2 to 10.
+- `screenshots/` - exported figures from the assignment.
 
-* Data visualization
-* Data preprocessing
-* Training an SVM classifier
-* Model evaluation
-* Hyperparameter tuning using GridSearchCV
+## What the assignment does
 
----
+1. Imports the required libraries.
+2. Loads `CC_GENERAL.csv`.
+3. Checks the dataset using `head()`, `shape`, `info()`, and `describe()`.
+4. Drops `CUST_ID` because it is an ID column, not a behavioral feature.
+5. Checks missing values.
+6. Fills missing values using mean imputation.
+7. Creates histograms, a correlation heatmap, and scatter plots.
+8. Scales the features using `StandardScaler`.
+9. Uses the elbow method and silhouette score to compare K values.
+10. Trains the final K-Means model with `K = 4`.
+11. Adds cluster labels to the dataframe.
+12. Creates cluster summary and customer count tables.
+13. Uses PCA to visualize the final clusters in 2D.
+14. Answers the final assignment questions.
 
-## Dataset
+## Final K value
 
-The lab uses the famous Iris dataset provided by Scikit-learn.
+The final selected K value is **4**. The elbow curve begins to slow down around K = 4. The sampled silhouette score is highest at K = 3, but K = 4 gives more useful business segments while still being reasonable.
 
-Features included:
+## Missing values
 
-* Sepal Length
-* Sepal Width
-* Petal Length
-* Petal Width
+The dataset had missing values in:
 
-Target classes:
+- `CREDIT_LIMIT`: 1 missing value
+- `MINIMUM_PAYMENTS`: 313 missing values
 
-* Setosa
-* Versicolor
-* Virginica
+They were handled using mean imputation.
 
----
+## Final cluster interpretation
 
-## Libraries Used
+- **Cluster 0:** Regular purchase customers with moderate balance and purchases.
+- **Cluster 1:** High-value/high-spending customers with very high purchases and high payments.
+- **Cluster 2:** Customers who rely heavily on cash advance and have high balances.
+- **Cluster 3:** Low-activity customers with lower purchases and generally lower usage.
 
-```python
-pandas
-numpy
-matplotlib
-seaborn
-scikit-learn
-```
+## How to run
 
----
-
-## Steps Performed
-
-### 1. Import Libraries and Dataset
-
-The dataset is loaded into a Pandas DataFrame for analysis and visualization.
-
----
-
-### 2. Data Visualization
-
-Several visualizations are created using Seaborn:
-
-* Pairplot of all features
-* KDE plot for Setosa species
-
-These plots help understand the relationships between features.
-
----
-
-### 3. Train-Test Split
-
-The dataset is divided into:
-
-* Training set (70%)
-* Testing set (30%)
-
-using `train_test_split()`.
-
----
-
-### 4. Training the SVM Model
-
-An SVM classifier is created using:
-
-```python
-SVC()
-```
-
-The model is trained using the training dataset.
-
----
-
-### 5. Predictions and Evaluation
-
-Predictions are made on the test dataset.
-
-The following evaluation metrics are used:
-
-* Confusion Matrix
-* Classification Report
-
-These metrics measure the model’s performance.
-
----
-
-### 6. Hyperparameter Tuning
-
-`GridSearchCV` is used to find the best parameters for:
-
-* `C`
-* `gamma`
-* `kernel`
-
-This improves model accuracy and performance.
-
----
-
-## Results
-
-The optimized SVM model achieved high classification accuracy on the Iris dataset after tuning the hyperparameters.
-
----
-
-## Technologies Used
-
-* Python
-* Jupyter Notebook
-* Scikit-learn
-* Seaborn
-* Matplotlib
-
----
-
-## Conclusion
-
-This assignment demonstrates how Support Vector Machines can be applied to classification problems. It also highlights the importance of visualization, model evaluation, and hyperparameter tuning in machine learning workflows.
+Open the solved notebook in Jupyter Notebook or JupyterLab and run all cells from top to bottom. Make sure `CC_GENERAL.csv` is in the same folder as the notebook.
