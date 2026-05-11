@@ -1,55 +1,81 @@
-# Lab11_Assignment - Credit Card Customer Segmentation
+# Lab 8 Assignment
 
-This folder contains the solved assignment notebook for the credit card customer segmentation task using K-Means clustering.
+## Overview
+This folder contains the README for Lab 8. The assignment follows the same machine learning workflow used in the previous solved labs.
 
-## Files
+## Objective
+The goal of this lab is to build a machine learning model, train it using the provided dataset, and evaluate its performance using proper evaluation metrics.
 
-- `02-Credit Card Customer Segmentation Assignment_SOLVED.ipynb` - completed assignment notebook.
-- `CC_GENERAL.csv` - dataset used by the notebook.
-- `credit_card_segmentation_solution.py` - Python script version of the notebook solution.
-- `cluster_summary.csv` - mean feature values for each final cluster.
-- `cluster_counts.csv` - number of customers in each cluster.
-- `elbow_inertia_values.csv` - inertia values for K = 1 to 10.
-- `silhouette_scores.csv` - silhouette scores for K = 2 to 10.
-- `screenshots/` - exported figures from the assignment.
+## Dataset
+The dataset should be placed in the same folder as the notebook before running the code.
 
-## What the assignment does
+Example:
+```text
+Lab8_Assignment/
+│── Lab8_Assignment.ipynb
+│── dataset.csv
+│── README.md
+```
 
-1. Imports the required libraries.
-2. Loads `CC_GENERAL.csv`.
-3. Checks the dataset using `head()`, `shape`, `info()`, and `describe()`.
-4. Drops `CUST_ID` because it is an ID column, not a behavioral feature.
-5. Checks missing values.
-6. Fills missing values using mean imputation.
-7. Creates histograms, a correlation heatmap, and scatter plots.
-8. Scales the features using `StandardScaler`.
-9. Uses the elbow method and silhouette score to compare K values.
-10. Trains the final K-Means model with `K = 4`.
-11. Adds cluster labels to the dataframe.
-12. Creates cluster summary and customer count tables.
-13. Uses PCA to visualize the final clusters in 2D.
-14. Answers the final assignment questions.
+## Steps Performed
+The assignment solution should include the following steps:
 
-## Final K value
+1. Import the required libraries.
+2. Load the dataset using pandas.
+3. Explore the dataset using:
+   - `head()`
+   - `info()`
+   - `describe()`
+4. Check for missing values.
+5. Separate the features and target variable.
+6. Split the data into training and testing sets.
+7. Train the machine learning model.
+8. Make predictions on the test data.
+9. Evaluate the model using appropriate metrics.
+10. Display the final results.
 
-The final selected K value is **4**. The elbow curve begins to slow down around K = 4. The sampled silhouette score is highest at K = 3, but K = 4 gives more useful business segments while still being reasonable.
+## Libraries Used
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-## Missing values
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+```
 
-The dataset had missing values in:
+## Common Machine Learning Workflow
+```python
+# Load data
+df = pd.read_csv("dataset.csv")
 
-- `CREDIT_LIMIT`: 1 missing value
-- `MINIMUM_PAYMENTS`: 313 missing values
+# Split features and target
+X = df.drop("target", axis=1)
+y = df["target"]
 
-They were handled using mean imputation.
+# Train/test split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.30, random_state=101
+)
 
-## Final cluster interpretation
+# Train model
+model.fit(X_train, y_train)
 
-- **Cluster 0:** Regular purchase customers with moderate balance and purchases.
-- **Cluster 1:** High-value/high-spending customers with very high purchases and high payments.
-- **Cluster 2:** Customers who rely heavily on cash advance and have high balances.
-- **Cluster 3:** Low-activity customers with lower purchases and generally lower usage.
+# Predictions
+predictions = model.predict(X_test)
 
-## How to run
+# Evaluation
+print(confusion_matrix(y_test, predictions))
+print(classification_report(y_test, predictions))
+print(accuracy_score(y_test, predictions))
+```
 
-Open the solved notebook in Jupyter Notebook or JupyterLab and run all cells from top to bottom. Make sure `CC_GENERAL.csv` is in the same folder as the notebook.
+## Notes
+- Make sure the dataset file is in the same folder as the notebook.
+- If the dataset has categorical columns, convert them using encoding before training.
+- If the model requires scaling, use `StandardScaler`.
+- The final notebook should contain both code and outputs.
+
+## Result
+The model should be trained and evaluated successfully, with the final performance shown using a confusion matrix and classification report.
